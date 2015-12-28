@@ -10,11 +10,13 @@ module Nidyx
       super
       self.file_name = "#{name}.#{EXT}"
       self.imports << JSON_MODEL_IMPORT if self.json_model
+      self.imports << NSOBJECT_IMPORT if self.nsobject
     end
 
     private
     EXT = "h"
     JSON_MODEL_IMPORT = "JSONModel"
+    NSOBJECT_IMPORT = "Foundation/Foundation"
 
   end
 end

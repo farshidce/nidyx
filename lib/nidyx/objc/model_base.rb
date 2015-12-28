@@ -2,7 +2,7 @@ require "mustache"
 
 module Nidyx
   class ObjCModelBase < Mustache
-    attr_accessor :name, :file_name, :author, :owner, :project, :imports, :comments, :json_model
+    attr_accessor :name, :file_name, :author, :owner, :project, :imports, :comments, :json_model, :nsobject
 
     self.template_path = File.join(__FILE__, "../../../../templates/objc")
 
@@ -13,6 +13,7 @@ module Nidyx
       @project = options[:project]
       @comments = options[:comments]
       @json_model = options[:objc][:json_model] if options[:objc]
+      @nsobject = options[:objc][:nsobject] if options[:objc]
       @imports = []
     end
 
@@ -26,6 +27,10 @@ module Nidyx
 
     def json_model?
       self.json_model
+    end
+
+    def nsobject?
+      self.nsobject
     end
   end
 end

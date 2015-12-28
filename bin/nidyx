@@ -14,6 +14,7 @@ usage: nidyx [-h] [--version]
        nidyx <schema> [-n] [-a author] [-c company] [-p project]
              [-o directory] [-x prefix]
              [--json-model] # objc specific
+             [--nsobject]   #objc specific
 
 END
 
@@ -37,6 +38,10 @@ Generate with JSONModel support and optional documentation:
 
   $ nidyx example.json.schema --json-model -a "Your Name" -p "Project Name"
 
+Generate code and extend from NSObject and import Foundation framework
+
+  $ nidyx example.json.schema --nsobject -a "Your Name" -p "Project Name"
+
 END
 
 ###
@@ -48,7 +53,8 @@ options = {
   :comments => true,
   :platform => "objc",
   :objc => {
-    :json_model => false
+    :json_model => false,
+    :nsobject => false
   }
 }
 
@@ -78,6 +84,10 @@ opts = OptionParser.new do |o|
   # objc generation options
   o.on("--json-model", "Generate with JSONModel support") do
     options[:objc][:json_model] = true
+  end
+
+  o.on("--nsobject", "Generate and explicitly extend from NSObject") do
+    options[:objc][:nsobject] = true
   end
 
   # other
